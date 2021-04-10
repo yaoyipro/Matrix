@@ -1,6 +1,6 @@
 // Matrix.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //lower triangular matrix in C
-
+/*
 #include <iostream>
 #include <stdlib.h>
 
@@ -15,14 +15,21 @@ struct Matrix
 void Set(struct Matrix *m, int i, int j, int x)
 {
     if (i >= j)
+    {
         m->A[i * (i - 1) / 2 + j - 1] = x;
-
+        //m->A[m->n * (j - 1) + (j - 2) * (j - 1) / 2 + i - j] = x;
+        //uncomment for column major representation
+    }
 }
 
 int Get(struct Matrix m, int i, int j)
 {
     if (i >= j)
-        return m.A[i*(i-1)/2+j-1];
+    {
+        return m.A[i * (i - 1) / 2 + j - 1];
+        //return m.A[m.n * (j - 1) + (j - 2) * (j - 1) / 2 + i - j];
+        //uncomment for column major representation
+    }
     else
         return 0;
 }
@@ -35,7 +42,11 @@ void Display(struct Matrix m)
         for (j = 1; j <=m.n; j++)
         {
             if (i >= j)
-                printf("%d ", m.A[i*(i-1)/2+j-1]);
+            {
+                printf("%d ", m.A[i * (i - 1) / 2 + j - 1]);
+                //printf("%d ", m.A[m.n * (j - 1) + (j - 2) * (j - 1) / 2 + i - j]);
+                //uncomment for column major representation
+            }
             else
                 printf("0 ");
         }
@@ -73,7 +84,7 @@ int main()
 
     return 0;
 }
-
+*/
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 

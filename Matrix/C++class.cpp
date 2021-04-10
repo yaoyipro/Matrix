@@ -1,56 +1,71 @@
-//this is the code in C++ for diagonal matrix.
+//this is the code in C++ for LowerTriangular matrix.
 //can not work with matrix.cpp in the same location
-/*
+
 #include <iostream>
+#include <stdlib.h>
+#include <string>
 
 using namespace std;
-class Diagonal
+
+class LowerTri
 {
 private:
 	int* A;
 	int n;
 public:
-	Diagonal()
+	LowerTri()
 	{
 		n = 2;
-		A = new int[2];
+		A = new int[2*(2+1)/2];
 	}
-	Diagonal(int n)
+	LowerTri(int n)
 	{
 		this->n = n;
-		A = new int[n];
+		A = new int[n*(n+1)/2];
 	}
-	~Diagonal()
+	~LowerTri()
 	{
 		delete[]A;
 	}
 	void Set(int i, int j, int x);
 	int Get(int i, int j);
 	void Display();
+	int GetDimension(){return n;}
 };
 
-void Diagonal::Set(int i, int j, int x)
+void LowerTri::Set(int i, int j, int x)
 {
-	if (i == j)
-		A[i - 1] = x;
-
+	if (i >= j)
+	{
+		A[i * (i - 1) / 2 + j - 1] = x;
+		//A[n * (j - 1) - (j-2) * (j-1) / 2 + i - j] = x;
+		//uncomment for column major formula
+	}
 }
 
-int Diagonal::Get(int i, int j)
+int LowerTri::Get(int i, int j)
 {
 	if (i == j)
-		return A[i - 1];
+	{
+		return A[i * (i - 1) / 2 + j - 1];
+		//return A[n * (j - 1) - (j-2) * (j-1) / 2 + i - j];
+		//uncomment for column major formula
+	}
 	return 0;
 }
 
-void Diagonal::Display()
+void LowerTri::Display()
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 1; i <= n; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = 1; j <= n; j++)
 		{
-			if (i == j)
-				cout << A[i] << " ";
+			if (i >= j)
+			{
+				cout << A[i * (i - 1) / 2 + j - 1] << " ";
+				//cout << A[n * (j - 1) - (j-2) * (j-1) / 2 + i - j];
+				//uncomment for column major formula
+			}
 			else
 				cout << "0 ";
 		}
@@ -59,13 +74,33 @@ void Diagonal::Display()
 }
 int main()
 {
-	Diagonal d(4);
-	d.Set(1, 1, 5);
-	d.Set(2, 2, 8);
-	d.Set(3, 3, 9);
-	d.Set(4, 4, 12);
+	//LowerTri d(4);
+	//d.Set(1, 1, 5);
+	//d.Set(2, 2, 8);
+	//d.Set(3, 3, 9);
+	//d.Set(4, 4, 12);
 
-	d.Display();
+	//d.Display();
+
+	int d;
+	cout<<"Enter Dimensions"<<endl;
+	cin >> d;
+	 
+	LowerTri lm(d);
+
+	int x;
+	cout<<"Enter All Elements"<<endl;
+	for(int i = 1; i<=d;i++)
+	{
+		for(int j=1;j<=d;j++)
+		{
+			cin>>x;
+			lm.Set(i,j,x);
+		}
+	}
+	cout << endl;
+
+	lm.Display();
+
 	return 0;
 }
-*/
