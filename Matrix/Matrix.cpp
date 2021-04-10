@@ -1,24 +1,28 @@
 // Matrix.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//12345
+//lower triangular matrix in C
 
 #include <iostream>
+#include <stdlib.h>
 
 struct Matrix
 {
-    int A[10];
+    int *A;
     int n;
 };
 
+
+
 void Set(struct Matrix *m, int i, int j, int x)
 {
-    if (i == j)
-        m->A[i - 1] = x;
+    if (i >= j)
+        m->A[i * (i - 1) / 2 + j - 1] = x;
+
 }
 
 int Get(struct Matrix m, int i, int j)
 {
-    if (i == j)
-        return m.A[i - 1];
+    if (i >= j)
+        return m.A[i*(i-1)/2+j-1];
     else
         return 0;
 }
@@ -26,12 +30,12 @@ int Get(struct Matrix m, int i, int j)
 void Display(struct Matrix m)
 {
     int i, j;
-    for (i = 0; i < m.n; i++)
+    for (i = 1; i <=m.n; i++)
     {
-        for (j = 0; j < m.n; j++)
+        for (j = 1; j <=m.n; j++)
         {
-            if (i == j)
-                printf("%d ", m.A[i]);
+            if (i >= j)
+                printf("%d ", m.A[i*(i-1)/2+j-1]);
             else
                 printf("0 ");
         }
@@ -42,11 +46,29 @@ void Display(struct Matrix m)
 int main()
 {
     struct Matrix m;
-    m.n = 4;
+    int i, j, x;
+    //m.n = 4;
 
-    Set(&m, 1, 1, 5); Set(&m, 2, 2, 8); Set(&m, 3, 3, 9); Set(&m, 4, 4, 12);
+    //Set(&m, 1, 1, 5); Set(&m, 2, 2, 8); Set(&m, 3, 3, 9); Set(&m, 4, 4, 12);
     
-    printf("%d \n", Get(m, 2, 2));
+    //printf("%d \n", Get(m, 2, 2));
+    //Display(m);
+
+    printf("Enter Dimension\n");
+    scanf_s("%d", &m.n);
+    m.A = (int*)malloc(m.n * (m.n - 1) / 2 * sizeof(int));
+
+    printf("Enter all elements\n");
+    for (i = 1; i <= m.n; i++)
+    {
+        for (j = 1; j <= m.n; j++)
+        {
+            scanf_s("%d", &x);
+            Set(&m, i, j, x);
+        }
+    }
+    printf("\n\n");
+
     Display(m);
 
     return 0;

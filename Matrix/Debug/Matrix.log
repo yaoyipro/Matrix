@@ -1,4 +1,2 @@
 ﻿  Matrix.cpp
-  LINK : C:\Users\Aiden\source\repos\LearnDataStructure\Matrix\Debug\Matrix.exe not found or not built by the last incremental link; performing full link
-C++class.obj : error LNK2005: _main already defined in Matrix.obj
-C:\Users\Aiden\source\repos\LearnDataStructure\Matrix\Debug\Matrix.exe : fatal error LNK1169: one or more multiply defined symbols found
+  Matrix.vcxproj -> C:\Users\Aiden\source\repos\LearnDataStructure\Matrix\Debug\Matrix.exe

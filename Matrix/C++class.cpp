@@ -1,6 +1,6 @@
 //this is the code in C++ for diagonal matrix.
 //can not work with matrix.cpp in the same location
-
+/*
 #include <iostream>
 
 using namespace std;
@@ -68,3 +68,4 @@ int main()
 	d.Display();
 	return 0;
 }
+*/
